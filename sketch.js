@@ -14,6 +14,7 @@ var score = 0;
 
 function preload() {
     getBackgroundImg();
+    flyingRock= loadSound("rock_flying.mp3")
 }
 
 function setup(){
@@ -90,11 +91,14 @@ function mouseDragged(){
 function mouseReleased(){
     slingshot.fly();
     gameState = "launched";
+    flyingRock.play()
 }
 
 function keyPressed(){
     if(keyCode === 32){
+        Matter.Body.setPosition(bird.body,{x:200, y:250})
        slingshot.attach(bird.body);
+       gameState = "onSling"
     }
 }
 
